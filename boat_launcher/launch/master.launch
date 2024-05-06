@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find vrx_gazebo)/launch/vrx.launch"/>
+
+    <!-- Include the second launch file -->
+    <include file="$(find wamv_gazebo)/launch/rviz_vrx.launch"/>
+</launch>

@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find vrx_gazebo)/launch/usv_keydrive.launch"/>
+
+</launch>

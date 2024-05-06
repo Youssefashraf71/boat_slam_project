@@ -1,0 +1,35 @@
+  <launch>
+    <param name="/use_sim_time" value="false"/>
+
+
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pcl_to_scan">
+    <remap from="cloud_in" to="/wamv/sensors/lidars/lidar_wamv/points"/>
+    <remap from="scan" to="/wamv/sensors/lidars/lidar_wamv/scan"/>
+    <param name="target_frame" value="wamv/base_link"/>
+    <param name="range_min" value="1"/>
+    <param name="range_max" value="50.0"/> <!-- Adjusted range_max, as 0.0 seems incorrect unless intentional -->
+    <param name="use_inf" value="true"/>
+    <param name="inf_epsilon" value="1.0"/>
+    <param name="min_height" value="0"/>  <!-- Set the minimum z value -->
+    <param name="max_height" value="5.0"/>  <!-- Adjust max_height as per your requirements -->
+  </node>
+
+    <node name="hector_mapping" pkg="hector_mapping" type="hector_mapping" output="screen">
+      <param name="base_frame" value="wamv/base_link"/>
+      <param name="odom_frame" value="wamv/base_link"/>
+      <param name="scan_topic" value="/wamv/sensors/lidars/lidar_wamv/scan"/>
+      <param name="map_resolution" value="0.05"/>
+      <param name="map_size" value="2000"/>
+      <param name="map_start_x" value="0.5"/>
+      <param name="map_start_y" value="0.5"/>
+      <param name="map_multi_res_levels" value="2"/>
+      
+      <param name="map_update_distance_thresh" value="0.2"/> 
+      <param name="map_update_angle_thresh" value="0.1"/> 
+    </node>
+
+    <include file="$(find hector_geotiff_launch)/launch/geotiff_mapper.launch">
+      <arg name="trajectory_source_frame_name" value="scanmatcher_frame"/>
+      <arg name="map_file_path" value="$(find hector_geotiff)/maps"/>
+    </include>
+  </launch>

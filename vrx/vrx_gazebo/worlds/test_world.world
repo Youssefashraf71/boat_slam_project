@@ -1,0 +1,145 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="custom_sea_world">
+    <!-- Light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+   <!-- Water surface -->
+    <model name="water_plane">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>500 500</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Blue</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+
+    <!-- Obstacles -->
+    <model name="buoy">
+      <static>true</static>
+      <pose>5 5 0 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>1</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>1</radius>
+            </sphere>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- Additional obstacles -->
+    <model name="buoy2">
+      <static>true</static>
+      <pose>15 15 0 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>1.5</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Yellow</name>
+            </script>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>1.5</radius>
+            </sphere>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- Walls at the end of the sea -->
+    <!-- Adjusted position to be at the ends rather than center -->
+    <model name="sea_wall_east">
+      <static>true</static>
+      <pose>0 250 0 0 0 1.57079632679</pose> <!-- Positioned at the eastern edge -->
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 500 10</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 500 10</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="sea_wall_west">
+      <static>true</static>
+      <pose>0 -250 0 0 0 1.57079632679</pose> <!-- Positioned at the western edge -->
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 500 10</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 500 10</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+  </world>
+</sdf>
