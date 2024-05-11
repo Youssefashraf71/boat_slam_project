@@ -10,7 +10,7 @@
     <param name="range_max" value="50.0"/> 
     <param name="use_inf" value="true"/>
     <param name="inf_epsilon" value="1.0"/>
-    <param name="min_height" value="0"/>  <!-- Set the minimum z value -->
+    <param name="min_height" value="1"/>  <!-- Set the minimum z value -->
     <param name="max_height" value="5.0"/>  <!-- Adjust max_height as per your requirements -->
   </node>
   </launch>
