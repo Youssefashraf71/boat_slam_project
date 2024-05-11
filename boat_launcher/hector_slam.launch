@@ -1,0 +1,16 @@
+  <launch>
+    <param name="/use_sim_time" value="true"/>
+
+
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pcl_to_scan">
+    <remap from="cloud_in" to="/wamv/sensors/lidars/lidar_wamv/points"/>
+    <remap from="scan" to="/wamv/sensors/lidars/lidar_wamv/scan"/>
+    <param name="target_frame" value="wamv/base_link"/>
+    <param name="range_min" value="1"/>
+    <param name="range_max" value="50.0"/> 
+    <param name="use_inf" value="true"/>
+    <param name="inf_epsilon" value="1.0"/>
+    <param name="min_height" value="0"/>  <!-- Set the minimum z value -->
+    <param name="max_height" value="5.0"/>  <!-- Adjust max_height as per your requirements -->
+  </node>
+  </launch>
